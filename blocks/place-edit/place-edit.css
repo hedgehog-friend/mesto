@@ -1,0 +1,15 @@
+.place-edit {
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 282px;
+  height: 50px;
+}
+
+@media (min-width: 600px) {
+  .place-edit {
+    width: 150px;
+    height: 50px;
+  }
+}
