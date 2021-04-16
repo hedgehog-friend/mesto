@@ -1,0 +1,17 @@
+.profile__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* max-width: 282px; */
+}
+
+@media (min-width: 600px) {
+  .profile__data {
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+    /* width: min-content; */
+  }
+}
