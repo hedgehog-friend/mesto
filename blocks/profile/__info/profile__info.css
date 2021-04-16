@@ -6,5 +6,6 @@
 @media (min-width: 600px) {
   .profile__info {
     margin: 0 0 0 30px;
+    max-width: calc(100% - 150px); /*150px — 120 под аватарку и 30 отступ от нее*/
   }
 }

@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  /* max-width: 282px; */
+  max-width: 100%;
 }
 
 @media (min-width: 600px) {
@@ -12,6 +11,6 @@
     flex-direction: row;
     align-items: center;
     margin-right: 20px;
-    /* width: min-content; */
+    max-width: calc(100% - 70px); /* 70px — 50 под кнопку добавления места и 20 отступ от нее*/
   }
 }
