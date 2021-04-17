@@ -18,11 +18,15 @@
 
 @import url(../blocks/place-edit/place-edit.css);
 @import url(../blocks/place-edit/__symbol-add/place-edit__symbol-add.css);
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
+
+@import url(../blocks/places/places.css);
+
+@import url(../blocks/place/place.css);
+@import url(../blocks/place/__image/place__image.css);
+@import url(../blocks/place/__name/place__name.css);
+@import url(../blocks/place/__info/place__info.css);
+
+@import url(../blocks/like/like.css);
 @import url();
 @import url();
 @import url();
