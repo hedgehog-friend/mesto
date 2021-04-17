@@ -1,0 +1,9 @@
+.like {
+  width: 22px;
+  height: 19px;
+  border: none;
+  /* padding: 0; */
+  background-image: url(../../images/symbols_logo/heart_white.svg);
+  background-color: transparent;
+  background-size: contain;
+}
