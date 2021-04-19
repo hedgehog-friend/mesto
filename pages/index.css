@@ -42,18 +42,5 @@
 @import url(../blocks/popup/__form-item/_el/popup__form-item_el_description.css);
 @import url(../blocks/popup/__form-item/_el/popup__form-item_el_name.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
+@import url(../blocks/popup/_opened/popup_opened.css);
+

@@ -9,6 +9,11 @@
   background-size: contain;
 }
 
+.profile__edit:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 @media (min-width: 581px) {
   .profile__edit {
     width: 22px;
