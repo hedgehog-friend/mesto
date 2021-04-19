@@ -5,6 +5,11 @@
   margin-left: 27px;
 }
 
+.header__logo:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 @media (min-width: 425px) {
   .header__logo {
     width: 142px;

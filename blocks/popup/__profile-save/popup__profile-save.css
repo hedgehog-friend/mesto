@@ -13,6 +13,11 @@
   min-height: 46px;
 }
 
+.popup__profile-save:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 @media (min-width: 581px) {
   .popup__profile-save {
     min-height: 50px;

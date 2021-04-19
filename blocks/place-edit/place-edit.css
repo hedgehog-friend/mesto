@@ -7,6 +7,11 @@
   height: 50px;
 }
 
+.place-edit:hover{
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 @media (min-width: 600px) {
   .place-edit {
     width: 150px;
