@@ -1,0 +1,23 @@
+.popup__profile-save {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+  background: #000000;
+  border: none;
+  border-radius: 2px;
+  width: 100%;
+  min-height: 46px;
+}
+
+@media (min-width: 581px) {
+  .popup__profile-save {
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+    /* text-align: center; */
+  }
+}

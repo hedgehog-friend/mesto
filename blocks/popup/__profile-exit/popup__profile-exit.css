@@ -1,0 +1,29 @@
+.popup__profile-exit {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-size: 100% 100%;
+
+  /* top: -24px; */
+  right: 0;
+  top: -40px;
+
+  background-color: transparent;
+  transform: rotate(45deg);
+  border: none;
+  object-fit: contain;
+  background-image: url(../../../images/symbols_logo/symbolAdd.png);
+
+
+}
+
+@media (min-width: 581px) {
+  .popup__profile-exit {
+    width: 40px;
+    height: 40px;
+    right: -40px;
+    top: -40px;
+  }
+}
+
+

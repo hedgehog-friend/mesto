@@ -27,17 +27,33 @@
 @import url(../blocks/place/__info/place__info.css);
 
 @import url(../blocks/like/like.css);
-@import url();
-@import url();
-@import url();
+@import url(../blocks/like/_active/like_active.css);
 
-@import url();
-@import url();
-@import url();
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
 
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__profile-save/popup__profile-save.css);
+@import url(../blocks/popup/__profile-exit/popup__profile-exit.css);
+@import url(../blocks/popup/__input-container/popup__input-container.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__form-item/popup__form-item.css);
+@import url(../blocks/popup/__form-item/_el/popup__form-item_el_description.css);
+@import url(../blocks/popup/__form-item/_el/popup__form-item_el_name.css);
+@import url(../blocks/popup/__container/popup__container.css);
 @import url();
 @import url();
 @import url();
 @import url();
-
+@import url();
+@import url();
+@import url();
+@import url();
+@import url();
+@import url();
+@import url();
+@import url();
+@import url();
+@import url();
 @import url();
