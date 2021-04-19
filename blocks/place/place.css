@@ -1,0 +1,11 @@
+.place {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.place:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}

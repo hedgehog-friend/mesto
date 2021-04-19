@@ -1,0 +1,11 @@
+.popup__form-item {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 17px;
+  min-height: 27px;
+  border: none;
+  border-bottom: 1px solid #000000;
+  width: 100%;
+  color: #000000;
+  padding: 0;
+}
