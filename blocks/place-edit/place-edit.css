@@ -5,6 +5,7 @@
   background-color: transparent;
   width: 282px;
   height: 50px;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .place-edit:hover{

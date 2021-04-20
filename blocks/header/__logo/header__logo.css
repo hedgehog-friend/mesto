@@ -3,6 +3,7 @@
   display: block;
   object-fit: cover;
   margin-left: 27px;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .header__logo:hover{

@@ -9,6 +9,7 @@
   border: none;
   background-image: url(../../../images/symbols_logo/cancel_white.svg);
   padding: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .popup__profile-exit:hover{
