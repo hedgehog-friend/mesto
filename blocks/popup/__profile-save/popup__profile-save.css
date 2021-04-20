@@ -14,7 +14,7 @@
 }
 
 .popup__profile-save:hover{
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -23,6 +23,5 @@
     min-height: 50px;
     font-size: 18px;
     line-height: 22px;
-    /* text-align: center; */
   }
 }

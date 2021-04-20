@@ -66,14 +66,14 @@ function enter(evt) {
   }
 }
 
-//открывает форму с предзаполенными полями
+//открывает форму с предзаполненными полями
 profileEdit.addEventListener('click', openPopup);
 
 //закрывает форму по клику на крестик
 closeProfileEdit.addEventListener('click', togglePopup);
 
 //для закрытия по клику вне контейнера формы
-popupMode.addEventListener('click', overlayClick)
+popupMode.addEventListener('mousedown', overlayClick);
 
 //отправка формы
 formElement.addEventListener('submit', formSubmitHandler);

@@ -2,14 +2,13 @@
   position: absolute;
   width: 26px;
   height: 26px;
-  background-size: 100% 100%;
+  background-size: 100%;
   right: 0;
   top: -40px;
   background-color: transparent;
-  transform: rotate(45deg);
   border: none;
-  object-fit: contain;
-  background-image: url(../../../images/symbols_logo/symbolAdd.png);
+  background-image: url(../../../images/symbols_logo/cancel_white.svg);
+  padding: 0;
 }
 
 .popup__profile-exit:hover{
@@ -22,7 +21,6 @@
     width: 40px;
     height: 40px;
     right: -40px;
-    top: -40px;
   }
 }
 

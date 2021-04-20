@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+  <title>Место</title>
 </head>
 
 <body class="body">
   <header class="header body__container">
     <a href="#" target="_self">
-      <img class="header__logo" src="./images/symbols_logo/logo_white.png" alt="логотип">
+      <img class="header__logo" src="./images/symbols_logo/logo_white.svg" alt="логотип">
     </a>
 
   </header>
@@ -29,54 +29,55 @@
         </div>
       </div>
       <button class="place-edit" type="button">
-        <img class="place-edit__symbol-add" src="./images/symbols_logo/symbolAdd.png" alt="кнопка добавить место">
+        <img class="place-edit__symbol-add" src="./images/symbols_logo/symbolAdd.svg" alt="кнопка добавить место">
       </button>
     </section>
 
-    <section class="places body__container">
-      <div class="place">
-        <img class="place__image" src="./images/places/Dombai.jpg" alt="изображение Домбая">
-        <div class="place__info">
-          <h2 class="place__name">Домбай</h2>
-          <button class="like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/places/Elbrus.png" alt="изображение Эльбруса">
-        <div class="place__info">
-          <h2 class="place__name">Эльбрус</h2>
-          <button class="like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/places/Karachaevo.png" alt="изображение Карачаево-Черкесии">
-        <div class="place__info">
-          <h2 class="place__name">Карачаево-Черкесия</h2>
-          <button class="like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/places/MineralnyeVody.jpg" alt="изображение города Минеральные воды">
-        <div class="place__info">
-          <h2 class="place__name">Минеральные воды</h2>
-          <button class="like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/places/beshtau.jpg" alt="изображение Бештау">
-        <div class="place__info">
-          <h2 class="place__name">Пятигорск</h2>
-          <button class="like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/places/BolshoeSedlo.jpg" alt="изображение горы Большое седло">
-        <div class="place__info">
-          <h2 class="place__name">Кисловодск</h2>
-          <button class="like" type="button"></button>
-        </div>
-      </div>
-
+    <section>
+      <ul class="places body__container">
+        <li class="place">
+          <img class="place__image" src="./images/places/Dombai.jpg" alt="изображение Домбая">
+          <div class="place__info">
+            <h2 class="place__name">Домбай</h2>
+            <button class="like" type="button"></button>
+          </div>
+        </li>
+        <li class="place">
+          <img class="place__image" src="./images/places/Elbrus.png" alt="изображение Эльбруса">
+          <div class="place__info">
+            <h2 class="place__name">Эльбрус</h2>
+            <button class="like" type="button"></button>
+          </div>
+        </li>
+        <li class="place">
+          <img class="place__image" src="./images/places/Karachaevo.png" alt="изображение Карачаево-Черкесии">
+          <div class="place__info">
+            <h2 class="place__name">Карачаево-Черкесия</h2>
+            <button class="like" type="button"></button>
+          </div>
+        </li>
+        <li class="place">
+          <img class="place__image" src="./images/places/MineralnyeVody.jpg" alt="изображение города Минеральные воды">
+          <div class="place__info">
+            <h2 class="place__name">Минеральные воды</h2>
+            <button class="like" type="button"></button>
+          </div>
+        </li>
+        <li class="place">
+          <img class="place__image" src="./images/places/beshtau.jpg" alt="изображение Бештау">
+          <div class="place__info">
+            <h2 class="place__name">Пятигорск</h2>
+            <button class="like" type="button"></button>
+          </div>
+        </li>
+        <li class="place">
+          <img class="place__image" src="./images/places/BolshoeSedlo.jpg" alt="изображение горы Большое седло">
+          <div class="place__info">
+            <h2 class="place__name">Кисловодск</h2>
+            <button class="like" type="button"></button>
+          </div>
+        </li>
+      </ul>
     </section>
   </main>
 
@@ -86,11 +87,11 @@
 
   <div class="popup">
     <div class="popup__container">
-      <form class="popup__form">
+      <form class="popup__form" name="form-profile">
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
-          <input type="text" class="popup__form-item popup__form-item_el_name">
-          <input type="text" class="popup__form-item popup__form-item_el_description">
+          <input type="text" name="name" class="popup__form-item popup__form-item_el_name">
+          <input type="text" name="job" class="popup__form-item popup__form-item_el_description">
         </fieldset>
         <button type="submit" class="popup__profile-save">Сохранить</button>
         <button type="button" class="popup__profile-exit"></button>
