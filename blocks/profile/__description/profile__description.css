@@ -6,9 +6,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 100%;
   text-align: center;
   max-width: 560px;
+  margin: 0;
 }
 
 @media (min-width: 581px) {

@@ -6,6 +6,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  text-align: center;
   margin: 0;
   flex: 1;
   max-width: calc(880px - 90px - 150px - 120px); /*90px — сумма отступов
