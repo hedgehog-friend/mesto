@@ -10,7 +10,8 @@
   .profile__data {
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
     margin-right: 20px;
-    max-width: calc(100% - 70px); /* 70px — 50 под кнопку добавления места и 20 отступ от нее*/
+    max-width: calc(100% - 170px); /* 170px — 150 под кнопку добавления места и 20 отступ от нее*/
   }
 }
