@@ -35,7 +35,7 @@
 
     <section>
       <ul class="places body__container">
-        <li class="place">
+        <!-- <li class="place">
           <img class="place__image" src="./images/places/Dombai.jpg" alt="изображение Домбая">
           <div class="place__info">
             <h2 class="place__name">Домбай</h2>
@@ -76,7 +76,7 @@
             <h2 class="place__name">Кисловодск</h2>
             <button class="like" aria-label="like" type="button"></button>
           </div>
-        </li>
+        </li> -->
       </ul>
     </section>
   </main>
@@ -85,7 +85,7 @@
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <form class="popup__form" name="form-profile">
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -94,10 +94,47 @@
           <input type="text" name="job" class="popup__form-item popup__form-item_el_description">
         </fieldset>
         <button type="submit" class="popup__profile-save">Сохранить</button>
-        <button type="button" aria-label="close" class="popup__profile-exit"></button>
+        <button type="button" aria-label="close" class="popup__exit"></button>
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_place">
+    <div class="popup__container">
+      <form class="popup__form" name="form-place">
+        <h2 class="popup__title">Новое место</h2>
+        <fieldset class="popup__input-container">
+          <input type="text" name="name" class="popup__form-item popup__form-item_el_name" placeholder="Название">
+          <input type="text" name="link" class="popup__form-item popup__form-item_el_description"
+            placeholder="Ссылка на картинку">
+        </fieldset>
+        <button type="submit" class="popup__profile-save">Сохранить</button>
+        <button type="button" aria-label="close" class="popup__exit"></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_image">
+    <div class="popup__container">
+      <button type="button" aria-label="close" class="popup__exit "></button>
+      <figure class="popup__figure">
+        <image class="popup__wide-image"></image>
+        <figcaption class="popup__name-wide-image"></figcaption>
+      </figure>
+      <image class="popup__wide-image"></image>
+    </div>
+  </div>
+
+  <template id="template-place" class="template-place">
+    <li class="place">
+      <img class="place__image" src="" alt="">
+      <button class="trash" aria-label="trash" type="button"></button>
+      <div class="place__info">
+        <h2 class="place__name"></h2>
+        <button class="like" aria-label="like" type="button"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 
