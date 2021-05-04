@@ -50,7 +50,7 @@ const placeFormElement = popupPlace.querySelector('.popup__form');
 const profileNameInput = popupProfile.querySelector('.popup__form-item_el_name');
 const profileDescriptionInput = popupProfile.querySelector('.popup__form-item_el_description');
 const placeNameInput = popupPlace.querySelector('.popup__form-item_el_name');
-const placeDescriptionInput = popupPlace.querySelector('.popup__form-item_el_description');
+const placeLinkInput = popupPlace.querySelector('.popup__form-item_el_description');
 
 //находим текущие данные профиля
 const currentName = document.querySelector('.profile__name');
@@ -62,15 +62,13 @@ function createCard(place) {
   const cardText = newCard.querySelector('.place__name');
   const cardImage = newCard.querySelector('.place__image');
   const like = newCard.querySelector('.like')
-  //const cardRemoveButton = newCard.querySelector('.trash');
+  const cardRemoveButton = newCard.querySelector('.trash');
 
   cardText.textContent = place.name;
   cardImage.setAttribute('src', place.link);
   cardImage.setAttribute('alt', `${place.name}. Изображение`);
-  like.addEventListener('click', function () {
-    like.classList.toggle('like_active');
-  });
-  //cardRemoveButton.addEventListener('click', handleRemoveCard);
+  like.addEventListener('click', () => like.classList.toggle('like_active'));
+  cardRemoveButton.addEventListener('click', () => newCard.remove());
 
   return newCard;
 }
@@ -128,7 +126,7 @@ function placeSubmitHandler(evt) {
   evt.preventDefault();
   // Получение новых значении из формы
   let newPlaceName = placeNameInput.value;
-  let newPlaceLink = placeDescriptionInput.value;
+  let newPlaceLink = placeLinkInput.value;
   placeFormElement.reset();
   const newCard = createCard({ name: newPlaceName, link: newPlaceLink });
   placesContainer.prepend(newCard);
@@ -136,12 +134,6 @@ function placeSubmitHandler(evt) {
   closePopup(evt);//вызов функции для закрытия попапа после сохранения
 }
 
-// обработка клавиши enter
-function enter(evt, handler) {
-  if (evt.keyCode === 13) {
-    profileSubmitHandler(evt);
-  }
-}
 //открывает форму с предзаполненными полями
 profileEdit.addEventListener('click', evt => openProfilePopup(popupProfile));
 placeAdd.addEventListener('click', evt => togglePopup(popupPlace));
@@ -153,6 +145,5 @@ popupPlace.addEventListener('mousedown', overlayClick);
 
 //отправка формы
 placeFormElement.addEventListener('submit', placeSubmitHandler);
-//placeFormElement.addEventListener('keydown', evt => enter(evt, placeSubmitHandler));
 profileFormElement.addEventListener('submit', profileSubmitHandler);
-//profileFormElement.addEventListener('keydown', enter);
+
