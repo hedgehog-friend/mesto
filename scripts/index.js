@@ -34,11 +34,12 @@ const placesContainer = document.querySelector('.places');
 const profileEdit = document.querySelector('.profile__edit');
 //находим кнопку добавления карточки
 const placeAdd = document.querySelector('.place-edit')
-//const likeTap = document.querySelectorAll('.place__image')
+const viewImage = document.querySelectorAll('.place__image')
 
 //находим попапы
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupPlace = document.querySelector('.popup_type_place');
+const popupImage = document.querySelector('.popup_type_image')
 
 //находим кнопку закрытия попапа
 const closePopupButtons = document.querySelectorAll('.popup__exit');
@@ -67,12 +68,21 @@ function createCard(place) {
   cardText.textContent = place.name;
   cardImage.setAttribute('src', place.link);
   cardImage.setAttribute('alt', `${place.name}. Изображение`);
+  cardImage.addEventListener('click', () => openImage(place))
   like.addEventListener('click', () => like.classList.toggle('like_active'));
   cardRemoveButton.addEventListener('click', () => newCard.remove());
 
   return newCard;
 }
 
+function openImage(place) {
+  const image = popupImage.querySelector('.popup__wide-image');
+  const caption = popupImage.querySelector('.popup__name-wide-image');
+  image.setAttribute('src', place.link);
+  image.setAttribute('alt', `${place.name}. Изображение`);
+  caption.textContent = place.name;
+  togglePopup(popupImage)
+}
 
 initialCards.forEach(function (currentCard) {
   const newCard = createCard(currentCard);
@@ -137,11 +147,13 @@ function placeSubmitHandler(evt) {
 //открывает форму с предзаполненными полями
 profileEdit.addEventListener('click', evt => openProfilePopup(popupProfile));
 placeAdd.addEventListener('click', evt => togglePopup(popupPlace));
+
 //закрывает форму по клику на крестик
 closePopupButtons.forEach(button => button.addEventListener('click', closePopup));
 //для закрытия по клику вне контейнера формы
 popupProfile.addEventListener('mousedown', overlayClick);
 popupPlace.addEventListener('mousedown', overlayClick);
+popupImage.addEventListener('mousedown', overlayClick)
 
 //отправка формы
 placeFormElement.addEventListener('submit', placeSubmitHandler);
