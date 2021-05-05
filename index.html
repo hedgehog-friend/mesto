@@ -35,48 +35,7 @@
 
     <section>
       <ul class="places body__container">
-        <!-- <li class="place">
-          <img class="place__image" src="./images/places/Dombai.jpg" alt="изображение Домбая">
-          <div class="place__info">
-            <h2 class="place__name">Домбай</h2>
-            <button class="like" aria-label="like" type="button"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img class="place__image" src="./images/places/Elbrus.png" alt="изображение Эльбруса">
-          <div class="place__info">
-            <h2 class="place__name">Эльбрус</h2>
-            <button class="like" aria-label="like" type="button"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img class="place__image" src="./images/places/Karachaevo.png" alt="изображение Карачаево-Черкесии">
-          <div class="place__info">
-            <h2 class="place__name">Карачаево-Черкесия</h2>
-            <button class="like" aria-label="like" type="button"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img class="place__image" src="./images/places/MineralnyeVody.jpg" alt="изображение города Минеральные воды">
-          <div class="place__info">
-            <h2 class="place__name">Минеральные воды</h2>
-            <button class="like" aria-label="like" type="button"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img class="place__image" src="./images/places/beshtau.jpg" alt="изображение Бештау">
-          <div class="place__info">
-            <h2 class="place__name">Пятигорск</h2>
-            <button class="like" aria-label="like" type="button"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img class="place__image" src="./images/places/BolshoeSedlo.jpg" alt="изображение горы Большое седло">
-          <div class="place__info">
-            <h2 class="place__name">Кисловодск</h2>
-            <button class="like" aria-label="like" type="button"></button>
-          </div>
-        </li> -->
+
       </ul>
     </section>
   </main>
@@ -85,6 +44,7 @@
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
 
+  <!-- Модальное окно для редактирования профиля -->
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <form class="popup__form" name="form-profile">
@@ -99,6 +59,7 @@
     </div>
   </div>
 
+  <!-- Модальное окно для добавления места -->
   <div class="popup popup_type_place">
     <div class="popup__container">
       <form class="popup__form" name="form-place">
@@ -114,9 +75,10 @@
     </div>
   </div>
 
+  <!-- Модальное окно для просмотра изображения-->
   <div class="popup popup_type_image">
     <div class="popup__container-image">
-      <button type="button" aria-label="close" class="popup__exit "></button>
+      <button type="button" aria-label="close" class="popup__exit .popup__exit_location_image"></button>
       <figure class="popup__figure">
         <image class="popup__wide-image"></image>
         <figcaption class="popup__name-wide-image"></figcaption>
@@ -124,6 +86,7 @@
     </div>
   </div>
 
+  <!-- Шаблон для добавления картоки места -->
   <template id="template-place" class="template-place">
     <li class="place">
       <img class="place__image" src="" alt="">

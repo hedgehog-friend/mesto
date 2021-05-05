@@ -34,6 +34,7 @@ const placesContainer = document.querySelector('.places');
 const profileEdit = document.querySelector('.profile__edit');
 //находим кнопку добавления карточки
 const placeAdd = document.querySelector('.place-edit')
+//находим область, по клику на которую появляется попап с изображением
 const viewImage = document.querySelectorAll('.place__image')
 
 //находим попапы
@@ -44,10 +45,11 @@ const popupImage = document.querySelector('.popup_type_image')
 //находим кнопку закрытия попапа
 const closePopupButtons = document.querySelectorAll('.popup__exit');
 
-// Находим форму
+// Находим формы
 const profileFormElement = popupProfile.querySelector('.popup__form');
 const placeFormElement = popupPlace.querySelector('.popup__form');
-// Находим поля формы в DOM
+
+// Находим поля форм в DOM
 const profileNameInput = popupProfile.querySelector('.popup__form-item_el_name');
 const profileDescriptionInput = popupProfile.querySelector('.popup__form-item_el_description');
 const placeNameInput = popupPlace.querySelector('.popup__form-item_el_name');
@@ -57,6 +59,8 @@ const placeLinkInput = popupPlace.querySelector('.popup__form-item_el_descriptio
 const currentName = document.querySelector('.profile__name');
 const currentDescription = document.querySelector('.profile__description');
 
+//функция создания карточки места. Заполняет dom карточки данными из формы/массива
+// и подписывается на событие лайка, открытия попапа с изображением и удаление
 function createCard(place) {
 
   const newCard = cardTemplate.content.querySelector('.place').cloneNode(true);
@@ -75,6 +79,7 @@ function createCard(place) {
   return newCard;
 }
 
+//функция открытия попапа с изображением
 function openImage(place) {
   const image = popupImage.querySelector('.popup__wide-image');
   const caption = popupImage.querySelector('.popup__name-wide-image');
@@ -84,6 +89,7 @@ function openImage(place) {
   togglePopup(popupImage)
 }
 
+//цикл для загрузки мест из массива при открытии страницы
 initialCards.forEach(function (currentCard) {
   const newCard = createCard(currentCard);
   placesContainer.append(newCard);
@@ -94,8 +100,9 @@ function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
 }
 
+//функция для закрытия попапа
 function closePopup(evt) {
-  let popup = evt.target.closest('.popup');
+  const popup = evt.target.closest('.popup');
   togglePopup(popup);
 }
 
@@ -106,20 +113,19 @@ function overlayClick(evt) {
   }
 }
 
-//функция по дефолтному присвоению текущих данных профиля в полях ввода
+//функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
 function fillCurrentData() {
   profileNameInput.value = currentName.textContent;
   profileDescriptionInput.value = currentDescription.textContent;
 }
 
-//т.к. togglePopup используется в разных слушателях, а предзаполнение полей формы
-//нужно только при открытии, предзаполнение вынесено в функцию currentData и они обе
-//объединены в функцию openPopup, которая вызывается при клике на кнопку редактирования профиля
+//функция для открытия попапа профиля, объединяющая открытие и предзаполнение полей
+//ввода текущими данными пользователя
 function openProfilePopup(popup) {
-
   togglePopup(popup);
   fillCurrentData();
 }
+
 // Обработчик «отправки» формы
 function profileSubmitHandler(evt) {
   evt.preventDefault();
@@ -135,16 +141,18 @@ function profileSubmitHandler(evt) {
 function placeSubmitHandler(evt) {
   evt.preventDefault();
   // Получение новых значении из формы
-  let newPlaceName = placeNameInput.value;
-  let newPlaceLink = placeLinkInput.value;
-  placeFormElement.reset();
+  const newPlaceName = placeNameInput.value;
+  const newPlaceLink = placeLinkInput.value;
+  placeFormElement.reset(); //сброс значений полей формы
+  // создание элемента с данными из формы
   const newCard = createCard({ name: newPlaceName, link: newPlaceLink });
+  //вставка его как первого элемента
   placesContainer.prepend(newCard);
 
   closePopup(evt);//вызов функции для закрытия попапа после сохранения
 }
 
-//открывает форму с предзаполненными полями
+//подписка на события клика по кнопкам редактирования профиля и добавления места
 profileEdit.addEventListener('click', evt => openProfilePopup(popupProfile));
 placeAdd.addEventListener('click', evt => togglePopup(popupPlace));
 
