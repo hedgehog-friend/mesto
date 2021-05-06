@@ -1,31 +1,3 @@
-//предзаполенный массив с карточками
-const initialCards = [
-  {
-    name: 'Домбай',
-    link: './images/places/Dombai.jpg'
-  },
-  {
-    name: 'Эльбрус',
-    link: './images/places/Elbrus.png'
-  },
-  {
-    name: 'Карачаево-Черкесия',
-    link: './images/places/Karachaevo.png'
-  },
-  {
-    name: 'Минеральные воды',
-    link: './images/places/MineralnyeVody.jpg'
-  },
-  {
-    name: 'Пятигорск',
-    link: './images/places/beshtau.jpg'
-  },
-  {
-    name: 'Кисловодск',
-    link: './images/places/BolshoeSedlo.jpg'
-  }
-];
-
 //находим template-элемент карточки
 const cardTemplate = document.querySelector('#template-place');
 //находим контейнер для добавления карточек
@@ -34,13 +6,15 @@ const placesContainer = document.querySelector('.places');
 const profileEdit = document.querySelector('.profile__edit');
 //находим кнопку добавления карточки
 const placeAdd = document.querySelector('.place-edit')
-//находим область, по клику на которую появляется попап с изображением
-const viewImage = document.querySelectorAll('.place__image')
 
 //находим попапы
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupPlace = document.querySelector('.popup_type_place');
 const popupImage = document.querySelector('.popup_type_image')
+
+//находим элементы попапа с изображением
+const image = popupImage.querySelector('.popup__wide-image');
+const caption = popupImage.querySelector('.popup__name-wide-image');
 
 //находим кнопку закрытия попапа
 const closePopupButtons = document.querySelectorAll('.popup__exit');
@@ -54,6 +28,7 @@ const profileNameInput = popupProfile.querySelector('.popup__form-item_el_name')
 const profileDescriptionInput = popupProfile.querySelector('.popup__form-item_el_description');
 const placeNameInput = popupPlace.querySelector('.popup__form-item_el_name');
 const placeLinkInput = popupPlace.querySelector('.popup__form-item_el_description');
+
 
 //находим текущие данные профиля
 const currentName = document.querySelector('.profile__name');
@@ -81,8 +56,7 @@ function createCard(place) {
 
 //функция открытия попапа с изображением
 function openImage(place) {
-  const image = popupImage.querySelector('.popup__wide-image');
-  const caption = popupImage.querySelector('.popup__name-wide-image');
+
   image.setAttribute('src', place.link);
   image.setAttribute('alt', `${place.name}. Изображение`);
   caption.textContent = place.name;
@@ -127,18 +101,18 @@ function openProfilePopup(popup) {
 }
 
 // Обработчик «отправки» формы
-function profileSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   // Получение новых значении из формы
-  let newName = profileNameInput.value;
-  let newDescription = profileDescriptionInput.value;
+  const newName = profileNameInput.value;
+  const newDescription = profileDescriptionInput.value;
   // Замена данных профиля в соответствии с введенными в форме значениями
   currentName.textContent = newName;
   currentDescription.textContent = newDescription;
   closePopup(evt);//вызов функции для закрытия попапа после сохранения
 }
 
-function placeSubmitHandler(evt) {
+function handlerPlaceFormSubmit(evt) {
   evt.preventDefault();
   // Получение новых значении из формы
   const newPlaceName = placeNameInput.value;
@@ -153,8 +127,8 @@ function placeSubmitHandler(evt) {
 }
 
 //подписка на события клика по кнопкам редактирования профиля и добавления места
-profileEdit.addEventListener('click', evt => openProfilePopup(popupProfile));
-placeAdd.addEventListener('click', evt => togglePopup(popupPlace));
+profileEdit.addEventListener('click', () => openProfilePopup(popupProfile));
+placeAdd.addEventListener('click', () => togglePopup(popupPlace));
 
 //закрывает форму по клику на крестик
 closePopupButtons.forEach(button => button.addEventListener('click', closePopup));
@@ -164,6 +138,6 @@ popupPlace.addEventListener('mousedown', overlayClick);
 popupImage.addEventListener('mousedown', overlayClick)
 
 //отправка формы
-placeFormElement.addEventListener('submit', placeSubmitHandler);
-profileFormElement.addEventListener('submit', profileSubmitHandler);
+placeFormElement.addEventListener('submit', handlerPlaceFormSubmit);
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
