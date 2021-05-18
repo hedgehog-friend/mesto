@@ -69,9 +69,19 @@ initialCards.forEach(function (currentCard) {
   placesContainer.append(newCard);
 });
 
+const escHandler = (evt) => {
+  if ((evt.key === 'Escape') || (document.classList.contains('popup_opened'))) {
+    togglePopup();
+    //popup.removeEventListener('keydown', escHandler)
+  }
+}
+
 //функция для изменения состояния попапа через добавление/удаление класса
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
+  // if (popup.classList.contains('popup_opened')) {
+  // document.addEventListener('keydown', (evt, popup) => escHandler(evt, popup))
+  //}
 }
 
 //функция для закрытия попапа
@@ -135,9 +145,24 @@ closePopupButtons.forEach(button => button.addEventListener('click', closePopup)
 //для закрытия по клику вне контейнера формы
 popupProfile.addEventListener('mousedown', overlayClick);
 popupPlace.addEventListener('mousedown', overlayClick);
-popupImage.addEventListener('mousedown', overlayClick)
+popupImage.addEventListener('mousedown', overlayClick);
+
+
+
+document.addEventListener('keydown', escHandler);
+
+
 
 //отправка формы
 placeFormElement.addEventListener('submit', handlerPlaceFormSubmit);
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-item',
+  submitButtonSelector: '.popup__save',
+  //inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__form-item_type_error',
+  errorClass: 'popup__input-error_active'
+});
 

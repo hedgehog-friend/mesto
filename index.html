@@ -50,12 +50,15 @@
       <form class="popup__form" name="form-profile">
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
-          <input type="text" name="name-profile" class="popup__form-item popup__form-item_el_name" placeholder="Имя"
-            required>
-          <input type="text" name="job" class="popup__form-item popup__form-item_el_description"
-            placeholder="Комментарий">
+          <input type="text" id="name-profile" name="name-profile" class="popup__form-item popup__form-item_el_name"
+            placeholder="Имя" required minlength="2" maxlength="40">
+          <span class="popup__input-error" id="name-profile-error"></span>
+          <input type="text" id="description-profile" name="description-profile"
+            class="popup__form-item popup__form-item_el_description" placeholder="Комментарий" minlength="2"
+            maxlength="200">
+          <span class="popup__input-error" id="description-profile-error"></span>
         </fieldset>
-        <button type="submit" class="popup__profile-save">Сохранить</button>
+        <button type="submit" class="popup__save">Сохранить</button>
         <button type="button" aria-label="закрыть" class="popup__exit"></button>
       </form>
     </div>
@@ -67,12 +70,14 @@
       <form class="popup__form" name="form-place">
         <h2 class="popup__title">Новое место</h2>
         <fieldset class="popup__input-container">
-          <input type="text" name="name-place" class="popup__form-item popup__form-item_el_name" placeholder="Название"
-            required>
-          <input type="url" name="link" class="popup__form-item popup__form-item_el_description"
+          <input type="text" id="name-place" name="name-place" class="popup__form-item popup__form-item_el_name"
+            placeholder="Название" required minlength="2" maxlength="30">
+          <span class="popup__input-error" id="name-place-error"></span>
+          <input type="url" id="link" name="link" class="popup__form-item popup__form-item_el_description"
             placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error" id="link-error"></span>
         </fieldset>
-        <button type="submit" class="popup__profile-save">Сохранить</button>
+        <button type="submit" class="popup__save">Сохранить</button>
         <button type="button" aria-label="закрыть" class="popup__exit"></button>
       </form>
     </div>
@@ -100,6 +105,7 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/initial-сards.js"></script>
   <script src="./scripts/index.js"></script>
 
