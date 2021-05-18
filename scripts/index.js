@@ -8,6 +8,7 @@ const profileEdit = document.querySelector('.profile__edit');
 const placeAdd = document.querySelector('.place-edit')
 
 //находим попапы
+const popupList = Array.from(document.querySelectorAll('.popup'));
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupPlace = document.querySelector('.popup_type_place');
 const popupImage = document.querySelector('.popup_type_image')
@@ -60,7 +61,7 @@ function openImage(place) {
   image.setAttribute('src', place.link);
   image.setAttribute('alt', `${place.name}. Изображение`);
   caption.textContent = place.name;
-  togglePopup(popupImage)
+  openPopup(popupImage)
 }
 
 //цикл для загрузки мест из массива при открытии страницы
@@ -69,25 +70,10 @@ initialCards.forEach(function (currentCard) {
   placesContainer.append(newCard);
 });
 
-const escHandler = (evt) => {
-  if ((evt.key === 'Escape') || (document.classList.contains('popup_opened'))) {
-    togglePopup();
-    //popup.removeEventListener('keydown', escHandler)
-  }
-}
-
-//функция для изменения состояния попапа через добавление/удаление класса
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
-  // if (popup.classList.contains('popup_opened')) {
-  // document.addEventListener('keydown', (evt, popup) => escHandler(evt, popup))
-  //}
-}
-
 //функция для закрытия попапа
 function closePopup(evt) {
   const popup = evt.target.closest('.popup');
-  togglePopup(popup);
+  popup.classList.remove('popup_opened');
 }
 
 //функция для закрытия попапа по клику вне контейнера
@@ -105,9 +91,11 @@ function fillCurrentData() {
 
 //функция для открытия попапа профиля, объединяющая открытие и предзаполнение полей
 //ввода текущими данными пользователя
-function openProfilePopup(popup) {
-  togglePopup(popup);
-  fillCurrentData();
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  if (popup === popupProfile) {
+    fillCurrentData()
+  }
 }
 
 // Обработчик «отправки» формы
@@ -136,9 +124,18 @@ function handlerPlaceFormSubmit(evt) {
   closePopup(evt);//вызов функции для закрытия попапа после сохранения
 }
 
+//функция закрытия попапов по esc
+function closeEscPopup(evt) {
+  if (evt.key === 'Escape') {
+    popupList.forEach(item => {
+      item.classList.remove('popup_opened')
+    });
+  }
+}
+
 //подписка на события клика по кнопкам редактирования профиля и добавления места
-profileEdit.addEventListener('click', () => openProfilePopup(popupProfile));
-placeAdd.addEventListener('click', () => togglePopup(popupPlace));
+profileEdit.addEventListener('click', () => openPopup(popupProfile));
+placeAdd.addEventListener('click', () => openPopup(popupPlace));
 
 //закрывает форму по клику на крестик
 closePopupButtons.forEach(button => button.addEventListener('click', closePopup));
@@ -146,22 +143,19 @@ closePopupButtons.forEach(button => button.addEventListener('click', closePopup)
 popupProfile.addEventListener('mousedown', overlayClick);
 popupPlace.addEventListener('mousedown', overlayClick);
 popupImage.addEventListener('mousedown', overlayClick);
-
-
-
-document.addEventListener('keydown', escHandler);
-
+//для закрытия попапов по escape
+document.addEventListener('keydown', closeEscPopup)
 
 
 //отправка формы
 placeFormElement.addEventListener('submit', handlerPlaceFormSubmit);
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
+//валидация форм
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__form-item',
   submitButtonSelector: '.popup__save',
-  //inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__form-item_type_error',
   errorClass: 'popup__input-error_active'
 });
