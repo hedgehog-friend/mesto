@@ -8,7 +8,6 @@ const profileEdit = document.querySelector('.profile__edit');
 const placeAdd = document.querySelector('.place-edit')
 
 //находим попапы
-const popupList = Array.from(document.querySelectorAll('.popup'));
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupPlace = document.querySelector('.popup_type_place');
 const popupImage = document.querySelector('.popup_type_image')
@@ -16,9 +15,6 @@ const popupImage = document.querySelector('.popup_type_image')
 //находим элементы попапа с изображением
 const image = popupImage.querySelector('.popup__wide-image');
 const caption = popupImage.querySelector('.popup__name-wide-image');
-
-//находим кнопку закрытия попапа
-const closePopupButtons = document.querySelectorAll('.popup__exit');
 
 // Находим формы
 const profileFormElement = popupProfile.querySelector('.popup__form');
@@ -61,7 +57,7 @@ function openImage(place) {
   image.setAttribute('src', place.link);
   image.setAttribute('alt', `${place.name}. Изображение`);
   caption.textContent = place.name;
-  openPopup(popupImage)
+  openPopup(popupImage);
 }
 
 //цикл для загрузки мест из массива при открытии страницы
@@ -70,17 +66,31 @@ initialCards.forEach(function (currentCard) {
   placesContainer.append(newCard);
 });
 
-//функция для закрытия попапа
-function closePopup(evt) {
-  const popup = evt.target.closest('.popup');
+//функция для закрытия попапа — удаляет класс видимости попапа, сбрасывает данные
+//из форм, снимает слушатели на события попапа
+function closePopup(popup) {
+  const closePopupButton = popup.querySelector('.popup__exit')
   popup.classList.remove('popup_opened');
+  if (placeFormElement) {
+    placeFormElement.reset();
+  };
+  document.removeEventListener('keydown', (evt) => closeEscPopup(evt, popup));
+  popup.removeEventListener('mousedown', (evt) => overlayClick(evt, popup));
+  closePopupButton.removeEventListener('click', () => closePopup(popup));
 }
 
 //функция для закрытия попапа по клику вне контейнера
-function overlayClick(evt) {
+function overlayClick(evt, popup) {
   if (evt.target === evt.currentTarget) {
-    closePopup(evt);
+    closePopup(popup);
   }
+}
+
+//функция закрытия попапов по esc
+function closeEscPopup(evt, popup) {
+  if (evt.key === 'Escape') {
+    closePopup(popup);
+  };
 }
 
 //функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
@@ -90,11 +100,15 @@ function fillCurrentData() {
 }
 
 //функция для открытия попапа профиля, объединяющая открытие и предзаполнение полей
-//ввода текущими данными пользователя
+//ввода текущими данными пользователя плюс добавляет слушатели на события попапа
 function openPopup(popup) {
+  const closePopupButton = popup.querySelector('.popup__exit')
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => closeEscPopup(evt, popup));
+  popup.addEventListener('mousedown', (evt) => overlayClick(evt, popup));
+  closePopupButton.addEventListener('click', () => closePopup(popup));
   if (popup === popupProfile) {
-    fillCurrentData()
+    fillCurrentData();
   }
 }
 
@@ -107,7 +121,7 @@ function handleProfileFormSubmit(evt) {
   // Замена данных профиля в соответствии с введенными в форме значениями
   currentName.textContent = newName;
   currentDescription.textContent = newDescription;
-  closePopup(evt);//вызов функции для закрытия попапа после сохранения
+  closePopup(popupProfile);//вызов функции для закрытия попапа после сохранения
 }
 
 function handlerPlaceFormSubmit(evt) {
@@ -121,31 +135,14 @@ function handlerPlaceFormSubmit(evt) {
   //вставка его как первого элемента
   placesContainer.prepend(newCard);
 
-  closePopup(evt);//вызов функции для закрытия попапа после сохранения
+  closePopup(popupPlace);//вызов функции для закрытия попапа после сохранения
 }
 
-//функция закрытия попапов по esc
-function closeEscPopup(evt) {
-  if (evt.key === 'Escape') {
-    popupList.forEach(item => {
-      item.classList.remove('popup_opened')
-    });
-  }
-}
+
 
 //подписка на события клика по кнопкам редактирования профиля и добавления места
 profileEdit.addEventListener('click', () => openPopup(popupProfile));
 placeAdd.addEventListener('click', () => openPopup(popupPlace));
-
-//закрывает форму по клику на крестик
-closePopupButtons.forEach(button => button.addEventListener('click', closePopup));
-//для закрытия по клику вне контейнера формы
-popupProfile.addEventListener('mousedown', overlayClick);
-popupPlace.addEventListener('mousedown', overlayClick);
-popupImage.addEventListener('mousedown', overlayClick);
-//для закрытия попапов по escape
-document.addEventListener('keydown', closeEscPopup)
-
 
 //отправка формы
 placeFormElement.addEventListener('submit', handlerPlaceFormSubmit);
