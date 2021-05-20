@@ -47,7 +47,7 @@
   <!-- Модальное окно для редактирования профиля -->
   <div class="popup popup_type_profile">
     <div class="popup__container">
-      <form class="popup__form" name="form-profile">
+      <form class="popup__form" name="form-profile" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
           <input type="text" id="name-profile" name="name-profile" class="popup__form-item popup__form-item_el_name"
@@ -67,11 +67,11 @@
   <!-- Модальное окно для добавления места -->
   <div class="popup popup_type_place">
     <div class="popup__container">
-      <form class="popup__form" name="form-place">
+      <form class="popup__form" name="form-place" novalidate>
         <h2 class="popup__title">Новое место</h2>
         <fieldset class="popup__input-container">
           <input type="text" id="name-place" name="name-place" class="popup__form-item popup__form-item_el_name"
-            placeholder="Название" required minlength="2" maxlength="30">
+            placeholder="Название" minlength="2" maxlength="30" required>
           <span class="popup__input-error" id="name-place-error"></span>
           <input type="url" id="link" name="link" class="popup__form-item popup__form-item_el_description"
             placeholder="Ссылка на картинку" required>
