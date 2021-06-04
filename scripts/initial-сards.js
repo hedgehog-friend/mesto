@@ -1,4 +1,4 @@
-//предзаполенный массив с карточками
+//предзаполненный массив с карточками
 const initialCards = [
   {
     name: 'Домбай',
@@ -25,3 +25,4 @@ const initialCards = [
     link: './images/places/BolshoeSedlo.jpg'
   }
 ];
+export default initialCards;
