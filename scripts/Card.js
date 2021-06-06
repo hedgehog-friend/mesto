@@ -4,12 +4,14 @@ class Card {
   #cardSelector;
   #element;
   #isLiked;
+  #handleOpenImage;
 
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleOpenImage) {
     this.#cardText = data.name;
     this.#cardImage = data.link;
     this.#cardSelector = cardSelector;
     this.#isLiked = false;
+    this.#handleOpenImage = handleOpenImage;
   }
 
   #setEventListeners() {
@@ -20,6 +22,10 @@ class Card {
     this.#element.querySelector('.trash').addEventListener('click', () => {
       this.#removeCard()
     });
+
+    this.#element.querySelector('.place__image').addEventListener('click', () => {
+      this.#handleOpenImage(this.#cardText, this.#cardImage)
+    });
   }
 
   #like() {
@@ -29,6 +35,7 @@ class Card {
 
   #removeCard() {
     this.#element.remove();
+    this.#element.null;
   }
 
   #getTemplate() {

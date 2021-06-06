@@ -18,10 +18,6 @@ const popupImage = document.querySelector('.popup_type_image')
 //находим кнопку закрытия попапа
 const closePopupButtons = Array.from(document.querySelectorAll('.popup__exit'));
 
-//находим элементы попапа с изображением
-const image = popupImage.querySelector('.popup__wide-image');
-const caption = popupImage.querySelector('.popup__name-wide-image');
-
 // Находим формы
 const profileFormElement = popupProfile.querySelector('.popup__form');
 const placeFormElement = popupPlace.querySelector('.popup__form');
@@ -37,24 +33,49 @@ const placeLinkInput = popupPlace.querySelector('.popup__form-item_el_descriptio
 //находим текущие данные профиля
 const currentName = document.querySelector('.profile__name');
 const currentDescription = document.querySelector('.profile__description');
+//функция открытия попапа с изображением
+function handleOpenImage(name, link) {
+  //находим элементы попапа с изображением
+  const image = popupImage.querySelector('.popup__wide-image');
+  const caption = popupImage.querySelector('.popup__name-wide-image');
+  image.src = link;
+  image.alt = name;
+  caption.textContent = name;
+  openPopup(popupImage);
+}
+
+//создаем новый объект-карточку
+function renderCard(item) {
+  const newCard = new Card(item, '#template-place', handleOpenImage);
+  const newElement = newCard.generateCard();
+  return newElement;
+}
 
 initialCards.forEach((item) => {
-  // Создадим экземпляр карточки
-  const card = new Card(item, '#template-place');
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-
-  // Добавляем в DOM
-  placesContainer.append(cardElement);
+  // Создадим экземпляр карточки и добавляем в DOM
+  placesContainer.append(renderCard(item));
 });
+
+
+// enableValidation(config);
+
+const config = {
+  inputSelector: '.popup__form-item',
+  submitButtonSelector: '.popup__save',
+  inputErrorClass: 'popup__form-item_type_error',
+  errorClass: 'popup__input-error_active'
+}
+
+const editPlaceFormValidator = new FormValidator(config, popupPlace);
+editPlaceFormValidator.enableValidation();
+const editProfileFormValidator = new FormValidator(config, popupProfile);
+editProfileFormValidator.enableValidation();
+
 
 //функция для закрытия попапа — удаляет класс видимости попапа, сбрасывает данные
 //из форм, снимает слушатели на события попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  if (popup === popupPlace) {
-    placeFormElement.reset();
-  }
   document.removeEventListener('keydown', closeEscPopup);
 }
 
@@ -95,15 +116,6 @@ function openPopup(popup) {
   document.addEventListener('keydown', closeEscPopup);
 }
 
-//функция открытия попапа с изображением
-function openImage(data) {
-  image.setAttribute('src', data.src);
-  image.setAttribute('alt', data.alt);
-  caption.textContent = data.alt;
-  openPopup(popupImage);
-}
-
-
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -119,72 +131,39 @@ function handleProfileFormSubmit(evt) {
 function handlerPlaceFormSubmit(evt) {
   evt.preventDefault();
   // Получение новых значении из формы
-  const newPlaceName = placeNameInput.value;
-  const newPlaceLink = placeLinkInput.value;
+  const item = {
+    name: placeNameInput.value,
+    link: placeLinkInput.value
+  }
 
-  placeFormElement.reset(); //сброс значений полей формы
-  // создание элемента с данными из формы
-  const newCard = new Card({
-    name: newPlaceName,
-    link: newPlaceLink
-  }, '#template-place');
-  const newElement = newCard.generateCard();
-  //вставка его как первого элемента
-  placesContainer.prepend(newElement);
+  // placeFormElement.reset(); //сброс значений полей формы
+  placesContainer.prepend(renderCard(item));
 
   closePopup(popupPlace);//вызов функции для закрытия попапа после сохранения
 }
 
-//функция преподготовки формы, деактивирует кнопку сохранения и очищает предыдущие ошибки формы
-function prepareForm(popup) {
-  popup.querySelector(config.submitButtonSelector).disabled = true;
-  const spanErrorList = Array.from(popup.querySelectorAll('.popup__input-error'));
-  spanErrorList.forEach(element => element.classList.remove(config.errorClass));
-  const inputErrorList = Array.from(popup.querySelectorAll('.popup__form-item'));
-  inputErrorList.forEach(element => element.classList.remove(config.inputErrorClass));
-}
 
 //подписка на события клика по кнопкам редактирования профиля и добавления места
 profileEdit.addEventListener('click', () => {
+  editProfileFormValidator.prepareForm();
   openPopup(popupProfile);
-  prepareForm(popupProfile);
   fillCurrentData();
+
 });
 
 placeAdd.addEventListener('click', () => {
   openPopup(popupPlace);
-  prepareForm(popupPlace);
+  placeFormElement.reset();
+  editPlaceFormValidator.prepareForm();
+
 });
 
 //подписка на закрытие попапов по оверлею или кнопке
 popupList.forEach(popup => popup.addEventListener('mousedown', (evt) => overlayClick(evt, popup)));
 closePopupButtons.forEach(button => button.addEventListener('click', closePopupButton));
 
-placesContainer.addEventListener('click', function (evt) {
-  if (evt.target.classList.contains('place__image')) {
-    const data = evt.target.closest('.place__image');
-
-    openImage(data);
-  }
-});
 
 //отправка формы
 placeFormElement.addEventListener('submit', handlerPlaceFormSubmit);
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
-
-// enableValidation(config);
-
-const config = {
-  inputSelector: '.popup__form-item',
-  submitButtonSelector: '.popup__save',
-  inputErrorClass: 'popup__form-item_type_error',
-  errorClass: 'popup__input-error_active'
-}
-
-const formList = Array.from(document.querySelectorAll(".popup__form"));
-//устанавливаем слушатели на инпуты и кнопки
-formList.forEach(formElement => {
-  const popupValidator = new FormValidator(config, formElement);
-  popupValidator.enableValidation();
-});
 

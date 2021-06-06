@@ -76,7 +76,17 @@ class FormValidator {
     });
   };
 
+  //чистка формы от ошибок при валидации на предыдущем открытии попапа
+  prepareForm = () => {
+    this.#currentForm.querySelector(this.#submitButtonSelector).disabled = true;
+    const spanErrorList = Array.from(this.#currentForm.querySelectorAll('.popup__input-error'));
+    spanErrorList.forEach(element => element.classList.remove(this.#errorClass));
+    const inputErrorList = Array.from(this.#currentForm.querySelectorAll('.popup__form-item'));
+    inputErrorList.forEach(element => element.classList.remove(this.#inputErrorClass));
+  }
+
   enableValidation = () => {
+
     this.#setEventListeners();
   }
 }
