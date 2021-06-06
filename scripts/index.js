@@ -155,7 +155,6 @@ placeAdd.addEventListener('click', () => {
   openPopup(popupPlace);
   placeFormElement.reset();
   editPlaceFormValidator.prepareForm();
-
 });
 
 //подписка на закрытие попапов по оверлею или кнопке
