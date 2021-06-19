@@ -1,6 +1,6 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import initialCards from './initial-сards.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import initialCards from '../scripts/initial-сards.js';
 
 //находим контейнер для добавления карточек
 const placesContainer = document.querySelector('.places');
