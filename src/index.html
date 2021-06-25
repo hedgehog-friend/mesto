@@ -10,7 +10,7 @@
 <body class="body">
   <header class="header body__container">
     <a href="#" target="_self">
-      <img class="header__logo" src="./images/symbols_logo/logo_white.svg" alt="логотип">
+      <img class="header__logo" src="<%=require('./images/symbols_logo/logo_white.svg')%>" alt="логотип">
     </a>
 
   </header>
@@ -18,7 +18,7 @@
   <main class="main">
     <section class="profile body__container">
       <div class="profile__data">
-        <img class="profile__image" src="./images/symbols_logo/avatar.jpg" alt="аватар профиля">
+        <img class="profile__image" src="<%=require('./images/symbols_logo/avatar.jpg')%>" alt="аватар профиля">
         <div class="profile__info">
           <div class="profile__info-upper">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -28,7 +28,8 @@
         </div>
       </div>
       <button class="place-edit" aria-label="добавить место" type="button">
-        <img class="place-edit__symbol-add" src="./images/symbols_logo/symbolAdd.svg" alt="кнопка добавить место">
+        <img class="place-edit__symbol-add" src="<%=require('./images/symbols_logo/symbolAdd.svg')%>"
+          alt="кнопка добавить место">
       </button>
     </section>
 
