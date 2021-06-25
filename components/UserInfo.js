@@ -11,14 +11,14 @@ export default class UserInfo {
 
   getUserInfo() {
     return {
-      name: this.#name.value,
-      description: this.#description.value
+      name: this.#name.textContent,
+      description: this.#description.textContent
     }
   }
 
   setUserInfo({ newNameValue, newDescriptionValue }) {
-    this.#name.value = newNameValue;
-    this.#description.value = newDescriptionValue;
+    this.#name.textContent = newNameValue;
+    this.#description.textContent = newDescriptionValue;
 
   }
 }

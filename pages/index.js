@@ -24,13 +24,13 @@ const imageSection = new Section({
 
 imageSection.renderItems();
 
-const userInfo = new UserInfo({ nameSelector: '#name-profile', descriptionSelector: '#description-profile' });
+const userInfo = new UserInfo({ nameSelector: '.profile__name', descriptionSelector: '.profile__description' });
 
 
 // Обработчик «отправки» формы
 function handleProfileFormSubmit({ name, description }) {
   // Замена данных профиля в соответствии с введенными в форме значениями
-  userInfo.setUserInfo({ newNameValue: name, newDescription: description })
+  userInfo.setUserInfo({ newNameValue: name, newDescriptionValue: description })
 }
 
 function handlePlaceFormSubmit({ name, description }) {
@@ -44,8 +44,9 @@ function handlePlaceFormSubmit({ name, description }) {
 }
 
 const popupPlace = new PopupWithForm(handlePlaceFormSubmit, '.popup_type_place');
+popupPlace.setEventListeners();
 const popupProfile = new PopupWithForm(handleProfileFormSubmit, '.popup_type_profile')
-
+popupProfile.setEventListeners();
 
 const editPlaceFormValidator = new FormValidator(config, popupPlace.popup);
 editPlaceFormValidator.enableValidation();
@@ -56,7 +57,8 @@ editProfileFormValidator.enableValidation();
 //функция открытия попапа с изображением
 function handleOpenImage(name, link) {
   const popupImage = new PopupWithImage({ name, link }, '.popup_type_image');
-  popupImage.openPopup()
+  popupImage.setEventListeners();
+  popupImage.openPopup();
 
   // //находим элементы попапа с изображением
   // const image = popupImage.querySelector('.popup__wide-image');
