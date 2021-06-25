@@ -12,7 +12,7 @@ import {
   placeAdd,
   config
 } from '../utils/constants.js';
-import './styles/index.css';
+import '../pages/index.css';
 
 const imageSection = new Section({
   items: initialCards,
