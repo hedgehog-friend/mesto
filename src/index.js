@@ -59,83 +59,7 @@ function handleOpenImage(name, link) {
   const popupImage = new PopupWithImage({ name, link }, '.popup_type_image');
   popupImage.setEventListeners();
   popupImage.openPopup();
-
-  // //находим элементы попапа с изображением
-  // const image = popupImage.querySelector('.popup__wide-image');
-  // const caption = popupImage.querySelector('.popup__name-wide-image');
-  // image.src = link;
-  // image.alt = name;
-  // caption.textContent = name;
-  // openPopup(popupImage);
 }
-
-
-
-
-
-// const dataProfileList = new Section({
-//   data: items, renderer: () => {
-
-//   }
-// }, containerSelector);
-
-
-
-// //создаем новый объект-карточку
-// function renderCard(item) {
-//   const newCard = new Card(item, '#template-place', handleOpenImage);
-//   const newElement = newCard.generateCard();
-//   return newElement;
-// }
-
-// initialCards.forEach((item) => {
-//   // Создадим экземпляр карточки и добавляем в DOM
-//   placesContainer.append(renderCard(item));
-// });
-
-
-// enableValidation(config);
-
-// const config = {
-//   inputSelector: '.popup__form-item',
-//   submitButtonSelector: '.popup__save',
-//   inputErrorClass: 'popup__form-item_type_error',
-//   errorClass: 'popup__input-error_active'
-// }
-
-
-
-
-//функция для закрытия попапа — удаляет класс видимости попапа, сбрасывает данные
-//из форм, снимает слушатели на события попапа
-// function closePopup(popup) {
-//   popup.classList.remove('popup_opened');
-//   document.removeEventListener('keydown', closeEscPopup);
-// }
-
-
-// функция для закрытия попапа по клику вне контейнера
-// function overlayClick(evt, popup) {
-//   if (evt.target.classList.contains('popup')) {
-//     closePopup(popup);
-//   }
-// }
-
-//функция закрытия попапов по кнопке закрытия
-// function closePopupButton(evt) {
-//   if (evt.target.classList.contains('popup__exit')) {
-//     const popup = evt.target.closest('.popup');
-//     closePopup(popup);
-//   }
-// }
-
-//функция закрытия попапов по esc
-// function closeEscPopup(evt) {
-//   if (evt.key === 'Escape') {
-//     const popup = document.querySelector('.popup_opened');
-//     closePopup(popup);
-//   };
-// }
 
 //функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
 function fillCurrentData() {
@@ -143,14 +67,6 @@ function fillCurrentData() {
   profileNameInput.value = userData.name;
   profileDescriptionInput.value = userData.description;
 }
-
-// ф-ция открытия попапа, включающая добавление слушателя по esc
-// function openPopup(popup) {
-//   popup.classList.add('popup_opened');
-
-//   document.addEventListener('keydown', closeEscPopup);
-// }
-
 
 
 //подписка на события клика по кнопкам редактирования профиля и добавления места
@@ -165,13 +81,3 @@ placeAdd.addEventListener('click', () => {
   popupPlace.openPopup();
   // placeFormElement.reset();
 });
-
-//подписка на закрытие попапов по оверлею или кнопке
-// popupList.forEach(popup => popup.addEventListener('mousedown', (evt) => overlayClick(evt, popup)));
-// closePopupButtons.forEach(button => button.addEventListener('click', closePopupButton));
-
-
-// //отправка формы
-// placeFormElement.addEventListener('submit', handlerPlaceFormSubmit);
-// profileFormElement.addEventListener('submit', handleProfileFormSubmit);
-
