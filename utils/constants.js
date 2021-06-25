@@ -1,28 +1,35 @@
+import dombaiImage from '../images/places/Dombai.jpg';
+import elbrusImage from '../images/places/Elbrus.png';
+import karachaevoImage from '../images/places/Karachaevo.png';
+import minvodyImage from '../images/places/MineralnyeVody.jpg';
+import beshtauImage from '../images/places/beshtau.jpg';
+import kislovodskImage from '../images/places/BolshoeSedlo.jpg';
+
 //предзаполненный массив с карточками
 const initialCards = [
   {
     name: 'Домбай',
-    link: './images/places/Dombai.jpg'
+    link: dombaiImage
   },
   {
     name: 'Эльбрус',
-    link: './images/places/Elbrus.png'
+    link: elbrusImage
   },
   {
     name: 'Карачаево-Черкесия',
-    link: './images/places/Karachaevo.png'
+    link: karachaevoImage
   },
   {
     name: 'Минеральные воды',
-    link: './images/places/MineralnyeVody.jpg'
+    link: minvodyImage
   },
   {
     name: 'Пятигорск',
-    link: './images/places/beshtau.jpg'
+    link: beshtauImage
   },
   {
     name: 'Кисловодск',
-    link: './images/places/BolshoeSedlo.jpg'
+    link: kislovodskImage
   }
 ];
 

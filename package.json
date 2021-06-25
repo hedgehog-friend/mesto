@@ -1,0 +1,35 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "### __Oписание проекта__ Сайт является проектной работой в блоке JavaScript на курсе. Реализован как одностраничный адаптивный вариант на основании макетов для 2 разрешений: 320рх и 1280рх.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hedgehog-friend/mesto.git"
+  },
+  "author": "Hedgehog Friendje",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hedgehog-friend/mesto/issues"
+  },
+  "homepage": "https://github.com/hedgehog-friend/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.6",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^1.6.1",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "core-js": "^3.15.1"
+  }
+}
