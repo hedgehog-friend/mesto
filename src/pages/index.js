@@ -1,9 +1,9 @@
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import Section from './components/Section.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 import {
   initialCards,
   profileNameInput,
@@ -11,8 +11,8 @@ import {
   profileEdit,
   placeAdd,
   config
-} from './utils/constants.js';
-import './pages/index.css';
+} from '../utils/constants.js';
+import './index.css';
 
 const imageSection = new Section({
   items: initialCards,
