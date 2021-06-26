@@ -1,5 +1,3 @@
-// import {currentName, currentDescription} from '../utils/constants.js';
-
 export default class UserInfo {
   #name;
   #description;
@@ -19,6 +17,5 @@ export default class UserInfo {
   setUserInfo({ newNameValue, newDescriptionValue }) {
     this.#name.textContent = newNameValue;
     this.#description.textContent = newDescriptionValue;
-
   }
 }

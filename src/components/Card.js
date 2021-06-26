@@ -5,6 +5,10 @@ class Card {
   #element;
   #isLiked;
   #handleOpenImage;
+  #likeButton;
+  #deleteButton;
+  #placeImage;
+
 
   constructor(data, cardSelector, handleOpenImage) {
     this.#cardText = data.name;
@@ -12,24 +16,25 @@ class Card {
     this.#cardSelector = cardSelector;
     this.#isLiked = false;
     this.#handleOpenImage = handleOpenImage;
+
   }
 
   #setEventListeners() {
-    this.#element.querySelector('.like').addEventListener('click', () => {
+    this.#likeButton.addEventListener('click', () => {
       this.#like()
     });
 
-    this.#element.querySelector('.trash').addEventListener('click', () => {
+    this.#deleteButton.addEventListener('click', () => {
       this.#removeCard()
     });
 
-    this.#element.querySelector('.place__image').addEventListener('click', () => {
+    this.#placeImage.addEventListener('click', () => {
       this.#handleOpenImage(this.#cardText, this.#cardImage)
     });
   }
 
   #like() {
-    this.#element.querySelector('.like').classList.toggle('like_active');
+    this.#likeButton.classList.toggle('like_active');
     this.#isLiked = !this.#isLiked;
   }
 
@@ -51,11 +56,16 @@ class Card {
   generateCard() {
     // Запишем разметку в приватное поле _element.
     this.#element = this.#getTemplate();
+    this.#likeButton = this.#element.querySelector('.like');
+    this.#deleteButton = this.#element.querySelector('.trash');
+    this.#placeImage = this.#element.querySelector('.place__image')
+
+
     this.#setEventListeners();
 
     // Добавим данные
-    this.#element.querySelector('.place__image').src = this.#cardImage;
-    this.#element.querySelector('.place__image').alt = this.#cardText;
+    this.#placeImage.src = this.#cardImage;
+    this.#placeImage.alt = this.#cardText;
     this.#element.querySelector('.place__name').textContent = this.#cardText;
 
     // Вернём элемент наружу

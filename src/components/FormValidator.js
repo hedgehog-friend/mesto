@@ -77,8 +77,7 @@ class FormValidator {
   };
 
   //чистка формы от ошибок при валидации на предыдущем открытии попапа
-  prepareForm = () => {
-    this.#buttonElement.disabled = true;
+  resetValidation = () => {
     this.#inputList.forEach(inputElement => {
       this.#hideInputError(inputElement)
     });

@@ -28,16 +28,16 @@ const userInfo = new UserInfo({ nameSelector: '.profile__name', descriptionSelec
 
 
 // Обработчик «отправки» формы
-function handleProfileFormSubmit({ name, description }) {
+function handleProfileFormSubmit(formValues) {
   // Замена данных профиля в соответствии с введенными в форме значениями
-  userInfo.setUserInfo({ newNameValue: name, newDescriptionValue: description });
+  userInfo.setUserInfo({ newNameValue: formValues['name-profile'], newDescriptionValue: formValues['description-profile'] });
 }
 
-function handlePlaceFormSubmit({ name, description }) {
+function handlePlaceFormSubmit(formValues) {
   // Получение новых значении из формы
   const item = {
-    name: name,
-    link: description
+    name: formValues['name-place'],
+    link: formValues['link']
   };
 
   imageSection.addItem(item);
@@ -47,6 +47,8 @@ const popupPlace = new PopupWithForm(handlePlaceFormSubmit, '.popup_type_place')
 popupPlace.setEventListeners();
 const popupProfile = new PopupWithForm(handleProfileFormSubmit, '.popup_type_profile')
 popupProfile.setEventListeners();
+const popupImage = new PopupWithImage('.popup_type_image');
+popupImage.setEventListeners();
 
 const editPlaceFormValidator = new FormValidator(config, popupPlace.popup);
 editPlaceFormValidator.enableValidation();
@@ -56,9 +58,7 @@ editProfileFormValidator.enableValidation();
 
 //функция открытия попапа с изображением
 function handleOpenImage(name, link) {
-  const popupImage = new PopupWithImage({ name, link }, '.popup_type_image');
-  popupImage.setEventListeners();
-  popupImage.openPopup();
+  popupImage.open({ name, link });
 }
 
 //функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
@@ -71,13 +71,12 @@ function fillCurrentData() {
 
 //подписка на события клика по кнопкам редактирования профиля и добавления места
 profileEdit.addEventListener('click', () => {
-  editProfileFormValidator.prepareForm();
+  editProfileFormValidator.resetValidation();
   fillCurrentData();
-  popupProfile.openPopup();
+  popupProfile.open();
 });
 
 placeAdd.addEventListener('click', () => {
-  editPlaceFormValidator.prepareForm();
-  popupPlace.openPopup();
-  // placeFormElement.reset();
+  editPlaceFormValidator.resetValidation();
+  popupPlace.open();
 });
