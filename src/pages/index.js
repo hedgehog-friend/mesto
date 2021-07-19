@@ -4,15 +4,26 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
+
 import {
   initialCards,
   profileNameInput,
   profileDescriptionInput,
   profileEdit,
   placeAdd,
-  config
+  config,
+  profileAvatar
 } from '../utils/constants.js';
 import './index.css';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/с�cohort-26',
+  headers: {
+    authorization: '891d8666-237d-4034-905f-8ae33c8b8bfb',
+    'Content-Type': 'application/json'
+  }
+});
 
 const imageSection = new Section({
   items: initialCards,
@@ -26,6 +37,15 @@ imageSection.renderItems();
 
 const userInfo = new UserInfo({ nameSelector: '.profile__name', descriptionSelector: '.profile__description' });
 
+api.getUserData()
+  .then(data => {
+    userInfo.setUserInfo({
+      newNameValue: data.name,
+      newDescriptionValue: data.about
+    });
+    profileAvatar.src = data.avatar;
+
+  });
 
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(formValues) {

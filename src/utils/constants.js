@@ -51,7 +51,8 @@ const placeAdd = document.querySelector('.place-edit')
 const profileNameInput = document.querySelector('#name-profile');
 const profileDescriptionInput = document.querySelector('#description-profile');
 
-
+//Находим аватар пользователя
+const profileAvatar = document.querySelector('.profile__image');
 
 export {
   initialCards,
@@ -60,4 +61,5 @@ export {
   placeAdd,
   profileNameInput,
   profileDescriptionInput,
+  profileAvatar
 }
