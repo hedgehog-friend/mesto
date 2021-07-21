@@ -8,15 +8,17 @@ class Card {
   #likeButton;
   #deleteButton;
   #placeImage;
+  #id;
+  #api
 
-
-  constructor(data, cardSelector, handleOpenImage) {
+  constructor(data, cardSelector, handleOpenImage, api) {
     this.#cardText = data.name;
     this.#cardImage = data.link;
+    this.#id = data._id;
+    this.#api = api;
     this.#cardSelector = cardSelector;
     this.#isLiked = false;
     this.#handleOpenImage = handleOpenImage;
-
   }
 
   #setEventListeners() {
@@ -39,8 +41,11 @@ class Card {
   }
 
   #removeCard() {
-    this.#element.remove();
-    this.#element.null;
+    this.#api.deleteCard(this.#id)
+      .then(() => {
+        this.#element.remove();
+        this.#element.null;
+      })
   }
 
   #getTemplate() {

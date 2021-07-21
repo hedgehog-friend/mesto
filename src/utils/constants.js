@@ -1,37 +1,37 @@
-import dombaiImage from '../images/places/Dombai.jpg';
-import elbrusImage from '../images/places/Elbrus.png';
-import karachaevoImage from '../images/places/Karachaevo.png';
-import minvodyImage from '../images/places/MineralnyeVody.jpg';
-import beshtauImage from '../images/places/beshtau.jpg';
-import kislovodskImage from '../images/places/BolshoeSedlo.jpg';
+// import dombaiImage from '../images/places/Dombai.jpg';
+// import elbrusImage from '../images/places/Elbrus.png';
+// import karachaevoImage from '../images/places/Karachaevo.png';
+// import minvodyImage from '../images/places/MineralnyeVody.jpg';
+// import beshtauImage from '../images/places/beshtau.jpg';
+// import kislovodskImage from '../images/places/BolshoeSedlo.jpg';
 
-//предзаполненный массив с карточками
-const initialCards = [
-  {
-    name: 'Домбай',
-    link: dombaiImage
-  },
-  {
-    name: 'Эльбрус',
-    link: elbrusImage
-  },
-  {
-    name: 'Карачаево-Черкесия',
-    link: karachaevoImage
-  },
-  {
-    name: 'Минеральные воды',
-    link: minvodyImage
-  },
-  {
-    name: 'Пятигорск',
-    link: beshtauImage
-  },
-  {
-    name: 'Кисловодск',
-    link: kislovodskImage
-  }
-];
+// //предзаполненный массив с карточками
+// const initialCards = [
+//   {
+//     name: 'Домбай',
+//     link: dombaiImage
+//   },
+//   {
+//     name: 'Эльбрус',
+//     link: elbrusImage
+//   },
+//   {
+//     name: 'Карачаево-Черкесия',
+//     link: karachaevoImage
+//   },
+//   {
+//     name: 'Минеральные воды',
+//     link: minvodyImage
+//   },
+//   {
+//     name: 'Пятигорск',
+//     link: beshtauImage
+//   },
+//   {
+//     name: 'Кисловодск',
+//     link: kislovodskImage
+//   }
+// ];
 
 
 const config = {
@@ -55,7 +55,7 @@ const profileDescriptionInput = document.querySelector('#description-profile');
 const profileAvatar = document.querySelector('.profile__image');
 
 export {
-  initialCards,
+  // initialCards,
   config,
   profileEdit,
   placeAdd,

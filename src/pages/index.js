@@ -7,7 +7,7 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
 import {
-  initialCards,
+  // initialCards,
   profileNameInput,
   profileDescriptionInput,
   profileEdit,
@@ -25,18 +25,26 @@ const api = new Api({
   }
 });
 
-const imageSection = new Section({
-  items: initialCards,
-  renderer: (card) => {
-    const newCard = new Card(card, '#template-place', handleOpenImage);
+const imageSection = new Section(
+  // items: initialCards,
+  (card) => {
+    const newCard = new Card(card, '#template-place', handleOpenImage, api);
     return newCard.generateCard();
-  }
-}, '.places');
+  },
+  '.places');
+//
 
-imageSection.renderItems();
+api.getInitialCards()
+  .then(data => {
+    data.forEach(item => imageSection.addItem(item))
+  })
+
+
+// imageSection.renderItems();
 
 const userInfo = new UserInfo({ nameSelector: '.profile__name', descriptionSelector: '.profile__description' });
 
+//подгружаем данные пользователя с сервера
 api.getUserData()
   .then(data => {
     userInfo.setUserInfo({
@@ -59,8 +67,11 @@ function handlePlaceFormSubmit(formValues) {
     name: formValues['name-place'],
     link: formValues['link']
   };
+  api.createCard(item)
+    .then(createdCard => {
+      imageSection.addItem(createdCard);
+    })
 
-  imageSection.addItem(item);
 }
 
 const popupPlace = new PopupWithForm(handlePlaceFormSubmit, '.popup_type_place');

@@ -39,7 +39,38 @@ export default class Api {
       });
   }
 
-  // другие методы работы с API
+  createCard(card) {
+    const url = `${this.#baseUrl}/cards`;
+    return fetch(url, {
+      headers: this.#headers,
+      method: 'POST',
+      body: JSON.stringify(card)
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
+  deleteCard(cardId) {
+    const url = `${this.#baseUrl}/cards/${cardId}`;
+    return fetch(url, {
+      headers: this.#headers,
+      method: 'DELETE'
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
 }
-
-
