@@ -64,6 +64,22 @@
     </div>
   </div>
 
+  <!-- Модальное окно для изменения аватара -->
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <form class="popup__form" name="form-avatar" novalidate>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <fieldset class="popup__input-container">
+          <input type="url" id="link" name="link" class="popup__form-item popup__form-item_el_description"
+            placeholder="Аватар" required>
+          <span class="popup__input-error" id="link-error"></span>
+        </fieldset>
+        <button type="submit" class="popup__save">Сохранить</button>
+        <button type="button" aria-label="закрыть" class="popup__exit"></button>
+      </form>
+    </div>
+  </div>
+
   <!-- Модальное окно для добавления места -->
   <div class="popup popup_type_place">
     <div class="popup__container">
@@ -94,6 +110,15 @@
     </div>
   </div>
 
+  <!-- Модальное окно для подтверждения удаления -->
+  <div class="popup popup_type_confirm-deletion">
+    <div class="popup__container-confirm-deletion">
+      <button type="button" aria-label="закрыть" class="popup__exit popup__exit_location_confirm-deletion"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button type="submit" class="popup__save">Да</button>
+    </div>
+  </div>
+
   <!-- Шаблон для добавления картоки места -->
   <template id="template-place" class="template-place">
     <li class="place">
@@ -101,7 +126,10 @@
       <button class="trash" aria-label="удалить" type="button"></button>
       <div class="place__info">
         <h2 class="place__name"></h2>
-        <button class="like" aria-label="нравится" type="button"></button>
+        <div>
+          <button class="like" aria-label="нравится" type="button"></button>
+          <div class="likesCounter"></div>
+        </div>
       </div>
     </li>
   </template>

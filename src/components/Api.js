@@ -18,9 +18,7 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
+
   }
 
   getUserData() {
@@ -34,9 +32,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
   }
 
   createCard(card) {
@@ -52,9 +47,7 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
+
   }
 
   deleteCard(cardId) {
@@ -69,8 +62,69 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
+
+  }
+
+
+  updateUser(user) {
+    const url = `${this.#baseUrl}/users/me`;
+    return fetch(url, {
+      method: 'PATCH',
+      headers: this.#headers,
+      body: JSON.stringify(user)
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+
+  }
+
+  updateAvatar(user) {
+    const url = `${this.#baseUrl}/users/me/avatar`;
+    return fetch(url, {
+      method: 'PATCH',
+      headers: this.#headers,
+      body: JSON.stringify(user)
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+  }
+
+
+  addLike(cardId) {
+    const url = `${this.#baseUrl}/cards/likes/${cardId}`;
+    return fetch(url, {
+      method: 'PUT',
+      headers: this.#headers,
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+
+  }
+
+  removeLike(cardId) {
+    const url = `${this.#baseUrl}/cards/likes/${cardId}`;
+    return fetch(url, {
+      method: 'DELETE',
+      headers: this.#headers,
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+
   }
 }

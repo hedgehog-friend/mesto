@@ -16,31 +16,25 @@ import {
   profileAvatar
 } from '../utils/constants.js';
 import './index.css';
+import ConfirmationPopup from '../components/ConfirmationPopup.js';
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/с�cohort-26',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26',
   headers: {
-    authorization: '891d8666-237d-4034-905f-8ae33c8b8bfb',
+    authorization: 'ef9c4dff-4cef-417b-a4dd-85f6d4ba3fef',
     'Content-Type': 'application/json'
   }
 });
 
+let currentUserId = null;
+
 const imageSection = new Section(
   // items: initialCards,
   (card) => {
-    const newCard = new Card(card, '#template-place', handleOpenImage, api);
+    const newCard = new Card(card, '#template-place', handleOpenImage, handleDeleteImageConfirmPopup, api, currentUserId);
     return newCard.generateCard();
   },
   '.places');
-//
-
-api.getInitialCards()
-  .then(data => {
-    data.forEach(item => imageSection.addItem(item))
-  })
-
-
-// imageSection.renderItems();
 
 const userInfo = new UserInfo({ nameSelector: '.profile__name', descriptionSelector: '.profile__description' });
 
@@ -52,13 +46,37 @@ api.getUserData()
       newDescriptionValue: data.about
     });
     profileAvatar.src = data.avatar;
+    currentUserId = data._id;
 
+    api.getInitialCards()
+      .then(data => {
+        data.forEach(item => imageSection.addItem(item))
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
   });
 
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(formValues) {
   // Замена данных профиля в соответствии с введенными в форме значениями
-  userInfo.setUserInfo({ newNameValue: formValues['name-profile'], newDescriptionValue: formValues['description-profile'] });
+  return api.updateUser({
+    name: formValues['name-profile'],
+    about: formValues['description-profile']
+  })
+    .then(user => {
+      userInfo.setUserInfo({
+        newNameValue: user.name,
+        newDescriptionValue: user.about
+      });
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+      return Promise.reject(err);
+    });
 }
 
 function handlePlaceFormSubmit(formValues) {
@@ -67,11 +85,27 @@ function handlePlaceFormSubmit(formValues) {
     name: formValues['name-place'],
     link: formValues['link']
   };
-  api.createCard(item)
+  return api.createCard(item)
     .then(createdCard => {
       imageSection.addItem(createdCard);
     })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+      return Promise.reject(err);
+    });
+}
 
+function handleAvatarFormSubmit(formValues) {
+  return api.updateAvatar({
+    avatar: formValues['link']
+  })
+    .then(user => {
+      profileAvatar.src = user.avatar;
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+      return Promise.reject(err);
+    });
 }
 
 const popupPlace = new PopupWithForm(handlePlaceFormSubmit, '.popup_type_place');
@@ -80,17 +114,32 @@ const popupProfile = new PopupWithForm(handleProfileFormSubmit, '.popup_type_pro
 popupProfile.setEventListeners();
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();
+const popupConfirm = new ConfirmationPopup('.popup_type_confirm-deletion');
+popupConfirm.setEventListeners();
+const popupAvatar = new PopupWithForm(handleAvatarFormSubmit, '.popup_type_avatar');
+popupAvatar.setEventListeners();
+
+
 
 const editPlaceFormValidator = new FormValidator(config, popupPlace.popup);
 editPlaceFormValidator.enableValidation();
 const editProfileFormValidator = new FormValidator(config, popupProfile.popup);
 editProfileFormValidator.enableValidation();
-
+const editAvatarFormValidator = new FormValidator(config, popupAvatar.popup);
+editAvatarFormValidator.enableValidation();
 
 //функция открытия попапа с изображением
 function handleOpenImage(name, link) {
   popupImage.open({ name, link });
 }
+
+//функция открытия попапа с подтверждением удаления
+function handleDeleteImageConfirmPopup(name, link) {
+  return new Promise(function (resolve, reject) {
+    popupConfirm.open(resolve, reject);
+  });
+}
+
 
 //функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
 function fillCurrentData() {
@@ -111,3 +160,8 @@ placeAdd.addEventListener('click', () => {
   editPlaceFormValidator.resetValidation();
   popupPlace.open();
 });
+
+profileAvatar.addEventListener('click', () => {
+  editAvatarFormValidator.resetValidation();
+  popupAvatar.open();
+})
