@@ -7,7 +7,6 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
 import {
-  // initialCards,
   profileNameInput,
   profileDescriptionInput,
   profileEdit,
@@ -27,7 +26,9 @@ const api = new Api({
   }
 });
 
+//объявляем идентификатор текущего пользователя. Значение будут установлено на основании ответа апи
 let currentUserId = null;
+
 
 const imageSection = new Section(
   (card) => {
@@ -47,7 +48,8 @@ api.getUserData()
     });
     profileAvatar.src = data.avatar;
     currentUserId = data._id;
-
+    //для корректной работы карточек неоьходим ид пользователя, поэтому загружаем
+    // их после его получения
     api.getInitialCards()
       .then(data => {
         data.forEach(item => imageSection.addItem(item))
@@ -75,7 +77,7 @@ function handleProfileFormSubmit(formValues) {
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
-      return Promise.reject(err);
+      return Promise.reject(err); //
     });
 }
 
@@ -91,7 +93,7 @@ function handlePlaceFormSubmit(formValues) {
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
-      return Promise.reject(err);
+      return Promise.reject(err);//передаем ошибку далее, чтобы попап остался открытым
     });
 }
 
@@ -132,7 +134,7 @@ function handleOpenImage(name, link) {
 }
 
 //функция открытия попапа с подтверждением удаления
-function handleDeleteImageConfirmPopup(name, link) {
+function handleDeleteImageConfirmPopup() {
   return new Promise(function (resolve, reject) {
     popupConfirm.open(resolve, reject);
   });
@@ -145,7 +147,7 @@ function fillCurrentData() {
   profileDescriptionInput.value = userData.description;
 }
 
-//подписка на события клика по кнопкам редактирования профиля и добавления места
+//подписка на события клика по кнопкам редактирования профиля, аватора и добавления места
 profileEdit.addEventListener('click', () => {
   editProfileFormValidator.resetValidation();
   fillCurrentData();

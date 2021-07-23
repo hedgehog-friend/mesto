@@ -9,15 +9,6 @@ export default class Section {
     this.#container = document.querySelector(containerSelector);
   }
 
-
-  //
-  // renderItems() {
-  //   this.#items.forEach((item) => {
-  //     const htmlElement = this.#renderer(item);
-  //     this.#container.append(htmlElement);
-  //   });
-  // }
-
   addItem(item) {
     const htmlElement = this.#renderer(item);
     this.#container.prepend(htmlElement);

@@ -5,7 +5,6 @@ class Card {
   #likesCounter;
   #element;
   #likes;
-  // #isLiked;
   #handleOpenImage;
   #likeButton;
   #deleteButton;
@@ -16,6 +15,12 @@ class Card {
   #currentUserId;
   #confirmDeletion;
 
+  //передаю экземпляр api, т.к. используется 3 метода из него
+  //(лайк, удаление лайка и удаление карточки), т.е. если передавать колбеками, то
+  //получается немного громоздкий список параметров конструктора
+  // confirmDeletion — функция, которая создает промис, который будет
+  // подтвержден или отклонен в зависимости от ответа пользователя в попапе подтверждения
+
   constructor(data, cardSelector, handleOpenImage, confirmDeletion, api, currentUserId) {
     this.#cardText = data.name;
     this.#cardImage = data.link;
@@ -25,11 +30,11 @@ class Card {
     this.#ownerId = data.owner._id
     this.#api = api;
     this.#cardSelector = cardSelector;
-    // this.#isLiked = false;
     this.#handleOpenImage = handleOpenImage;
     this.#confirmDeletion = confirmDeletion;
   }
 
+  //функция слушателей для для лайка, удаления и открытия попапа места
   #setEventListeners() {
     this.#likeButton.addEventListener('click', () => {
       this.#like()
@@ -46,17 +51,7 @@ class Card {
 
   //функция проверки наличия лайка текущего пользователя
   #isLiked() {
-    // this.#likes.forEach(user => {
-    //   return user._id === this.#currentUserId;
-    // })
     return this.#likes.some(user => user._id === this.#currentUserId);
-    // const likes = this.#likes;
-    // for (let user of likes) {
-    //   if (this.#currentUserId === user._id) {
-    //     return true;
-    //   }
-    // }
-    // return false;
   }
 
   #updateLikesControl() {
@@ -65,7 +60,7 @@ class Card {
     //отображение счетчика (скрываем при нуле)
     if (this.#likes.length === 0) { this.#likesCounter.classList.remove('likesCounter_active') }
     else { this.#likesCounter.classList.add('likesCounter_active') }
-    //отображение лайка на основании того, лайкал ли пользователь карточку
+    //отображение дизайна лайка на основании того, лайкал ли пользователь карточку
     if (this.#isLiked()) {
       this.#likeButton.classList.add('like_active');
     } else { this.#likeButton.classList.remove('like_active'); }
@@ -91,6 +86,9 @@ class Card {
     }
   }
 
+  //с помощью confirmDletion запрашивает пользовательское подтверждение
+  // и если получает его, то вызывает метод удаления у апи,
+  // а затем удаляет карточку из интерфейса пользователя
   #removeCard() {
     this.#confirmDeletion()
       .then(() => {
@@ -111,7 +109,6 @@ class Card {
       .content
       .querySelector('.place')
       .cloneNode(true);
-
     return newCard;
   }
 
@@ -122,10 +119,10 @@ class Card {
     this.#deleteButton = this.#element.querySelector('.trash');
     this.#likesCounter = this.#element.querySelector('.likesCounter');
     this.#placeImage = this.#element.querySelector('.place__image');
+    //проверяем владельца карточки и скрываем иконку удаления для чужих карточек
     if (this.#ownerId != this.#currentUserId) {
       this.#deleteButton.classList.add('trash_hidden')
     }
-
     this.#updateLikesControl();
     this.#setEventListeners();
 

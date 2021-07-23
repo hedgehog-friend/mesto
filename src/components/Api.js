@@ -7,6 +7,7 @@ export default class Api {
     this.#headers = headers;
   }
 
+  //загрузка карточек с сервера
   getInitialCards() {
     const url = `${this.#baseUrl}/cards`;
     return fetch(url, {
@@ -20,6 +21,7 @@ export default class Api {
       })
   }
 
+  //получение данных пользователя
   getUserData() {
     const url = `${this.#baseUrl}/users/me`;
     return fetch(url, {
@@ -62,7 +64,7 @@ export default class Api {
       })
   }
 
-
+  //метод для обновления инфы при редактировании данных профиля
   updateUser(user) {
     const url = `${this.#baseUrl}/users/me`;
     return fetch(url, {
