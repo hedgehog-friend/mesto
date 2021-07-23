@@ -55,6 +55,7 @@ const profileDescriptionInput = document.querySelector('#description-profile');
 
 //Находим аватар пользователя
 const profileAvatar = document.querySelector('.profile__image');
+const profileAvatarClick = document.querySelector('.profile__avatar')
 
 export {
   // initialCards,
@@ -63,5 +64,6 @@ export {
   placeAdd,
   profileNameInput,
   profileDescriptionInput,
-  profileAvatar
+  profileAvatar,
+  profileAvatarClick
 }

@@ -13,7 +13,8 @@ import {
   profileEdit,
   placeAdd,
   config,
-  profileAvatar
+  profileAvatar,
+  profileAvatarClick
 } from '../utils/constants.js';
 import './index.css';
 import ConfirmationPopup from '../components/ConfirmationPopup.js';
@@ -156,7 +157,7 @@ placeAdd.addEventListener('click', () => {
   popupPlace.open();
 });
 
-profileAvatar.addEventListener('click', () => {
+profileAvatarClick.addEventListener('click', () => {
   editAvatarFormValidator.resetValidation();
   popupAvatar.open();
 })

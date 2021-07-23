@@ -18,12 +18,16 @@
   <main class="main">
     <section class="profile body__container">
       <div class="profile__data">
-
-        <img class="profile__image" src="#" alt="аватар профиля">
+        <div class="profile__avatar">
+          <img class="profile__image" src="#" alt="аватар профиля">
+          <div class=profile__image-hover><img class="profile__image-hover-symbol"
+              src="<%=require('./images/symbols_logo/pencil.svg')%>">
+          </div>
+        </div>
         <div class="profile__info">
           <div class="profile__info-upper">
             <h1 class="profile__name"></h1>
-            <button class="profile__edit" aria-label="редактровать" type="button"></button>
+            <button class="profile__edit" aria-label="редактировать" type="button"></button>
           </div>
           <p class="profile__description"></p>
         </div>
