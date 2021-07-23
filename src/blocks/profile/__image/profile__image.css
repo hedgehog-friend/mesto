@@ -6,3 +6,11 @@
   object-fit: cover;
   object-position: center;
 }
+
+.profile__image:hover{
+  opacity: 0.8;
+  background-image: url(../../../images/symbols_logo/pencil.svg);
+  background-position: center;
+  z-index: 2;
+  cursor: pointer;
+}

@@ -29,7 +29,6 @@ const api = new Api({
 let currentUserId = null;
 
 const imageSection = new Section(
-  // items: initialCards,
   (card) => {
     const newCard = new Card(card, '#template-place', handleOpenImage, handleDeleteImageConfirmPopup, api, currentUserId);
     return newCard.generateCard();
@@ -119,8 +118,6 @@ popupConfirm.setEventListeners();
 const popupAvatar = new PopupWithForm(handleAvatarFormSubmit, '.popup_type_avatar');
 popupAvatar.setEventListeners();
 
-
-
 const editPlaceFormValidator = new FormValidator(config, popupPlace.popup);
 editPlaceFormValidator.enableValidation();
 const editProfileFormValidator = new FormValidator(config, popupProfile.popup);
@@ -140,14 +137,12 @@ function handleDeleteImageConfirmPopup(name, link) {
   });
 }
 
-
 //функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
 function fillCurrentData() {
   const userData = userInfo.getUserInfo();
   profileNameInput.value = userData.name;
   profileDescriptionInput.value = userData.description;
 }
-
 
 //подписка на события клика по кнопкам редактирования профиля и добавления места
 profileEdit.addEventListener('click', () => {

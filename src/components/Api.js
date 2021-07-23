@@ -18,7 +18,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-
   }
 
   getUserData() {
@@ -47,7 +46,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-
   }
 
   deleteCard(cardId) {
@@ -62,7 +60,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-
   }
 
 
@@ -79,7 +76,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-
   }
 
   updateAvatar(user) {
@@ -97,7 +93,6 @@ export default class Api {
       })
   }
 
-
   addLike(cardId) {
     const url = `${this.#baseUrl}/cards/likes/${cardId}`;
     return fetch(url, {
@@ -110,7 +105,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-
   }
 
   removeLike(cardId) {
@@ -125,6 +119,5 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-
   }
 }

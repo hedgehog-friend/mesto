@@ -18,6 +18,7 @@
   <main class="main">
     <section class="profile body__container">
       <div class="profile__data">
+
         <img class="profile__image" src="#" alt="аватар профиля">
         <div class="profile__info">
           <div class="profile__info-upper">
@@ -71,7 +72,7 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
           <input type="url" id="link" name="link" class="popup__form-item popup__form-item_el_description"
-            placeholder="Аватар" required>
+            placeholder="Введите ссылку" required>
           <span class="popup__input-error" id="link-error"></span>
         </fieldset>
         <button type="submit" class="popup__save">Сохранить</button>
@@ -112,9 +113,9 @@
 
   <!-- Модальное окно для подтверждения удаления -->
   <div class="popup popup_type_confirm-deletion">
-    <div class="popup__container-confirm-deletion">
+    <div class="popup__container popup__container-confirm-deletion">
       <button type="button" aria-label="закрыть" class="popup__exit popup__exit_location_confirm-deletion"></button>
-      <h2 class="popup__title">Вы уверены?</h2>
+      <h2 class="popup__title popup__title_type_confirmation">Вы уверены?</h2>
       <button type="submit" class="popup__save">Да</button>
     </div>
   </div>
