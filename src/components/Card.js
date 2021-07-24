@@ -102,17 +102,18 @@ class Card {
   // и если получает его, то вызывает метод удаления у апи,
   // а затем удаляет карточку из интерфейса пользователя
   #removeCard() {
-    this.#confirmDeletion()
-      .then(() => {
-        return this.#api.deleteCard(this.#id);
-      })
-      .then(() => {
-        this.#element.remove();
-        this.#element.null;
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
+    this.#confirmDeletion(() => {
+      return this.#api
+        .deleteCard(this.#id)
+        .then(() => {
+          this.#element.remove();
+          this.#element.null;
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+          return Promise.reject(err);
+        });
+    });
   }
 
   #getTemplate() {

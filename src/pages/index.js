@@ -47,28 +47,21 @@ const userInfo = new UserInfo({
 });
 
 //подгружаем данные пользователя с сервера
-api
-  .getUserData()
-  .then((data) => {
+Promise.all([api.getUserData(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    //применяем данные пользователя
     userInfo.setUserInfo({
-      newNameValue: data.name,
-      newDescriptionValue: data.about,
+      newNameValue: userData.name,
+      newDescriptionValue: userData.about,
     });
-    profileAvatar.src = data.avatar;
-    currentUserId = data._id;
-    //для корректной работы карточек необходим id пользователя, поэтому загружаем
-    // их после его получения
-    api
-      .getInitialCards()
-      .then((data) => {
-        data.forEach((item) => imageSection.addItem(item));
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
+    profileAvatar.src = userData.avatar;
+    currentUserId = userData._id;
+    //подгружаем карточки с сервера
+    initialCards.forEach((item) => imageSection.addItem(item));
   })
   .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
+    // попадаем сюда, если один из промисов завершится ошибкой
+    console.log(err);
   });
 
 // Обработчик «отправки» формы
@@ -155,10 +148,8 @@ function handleOpenImage(name, link) {
 }
 
 //функция открытия попапа с подтверждением удаления
-function handleDeleteImageConfirmPopup() {
-  return new Promise(function (resolve, reject) {
-    popupConfirm.open(resolve, reject);
-  });
+function handleDeleteImageConfirmPopup(callback) {
+  popupConfirm.open(callback);
 }
 
 //функция по дефолтному присвоению текущих данных профиля в полях ввода формы профиля
