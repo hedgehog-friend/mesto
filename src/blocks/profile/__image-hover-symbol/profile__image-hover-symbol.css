@@ -1,4 +1,3 @@
-
 .profile__image-hover-symbol {
   width: 26px;
   height: 26px;
@@ -8,5 +7,5 @@
   top: 0;
   bottom: 0;
   margin: auto;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }

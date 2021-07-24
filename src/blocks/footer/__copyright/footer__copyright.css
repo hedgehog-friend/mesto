@@ -9,8 +9,7 @@
 
 @media (min-width: 425px) {
   .footer__copyright {
-      font-size: 18px;
-      line-height: 22px;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
-

@@ -17,19 +17,23 @@ class FormValidator {
 
   //скрыть ошибку
   #hideInputError = (inputElement) => {
-    const errorElement = this.#currentForm.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this.#currentForm.querySelector(
+      `#${inputElement.id}-error`
+    );
     inputElement.classList.remove(this.#inputErrorClass);
     errorElement.classList.remove(this.#errorClass);
-    errorElement.textContent = '';
-  }
+    errorElement.textContent = "";
+  };
 
   //показать ошибку
   #showInputError = (inputElement) => {
-    const errorElement = this.#currentForm.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this.#currentForm.querySelector(
+      `#${inputElement.id}-error`
+    );
     inputElement.classList.add(this.#inputErrorClass);
     errorElement.classList.add(this.#errorClass);
     errorElement.textContent = inputElement.validationMessage;
-  }
+  };
 
   //проверка валидности
   #checkInputValidity = (inputElement) => {
@@ -38,12 +42,12 @@ class FormValidator {
     } else {
       this.#showInputError(inputElement);
     }
-  }
+  };
 
   //наличие невалидного поля
   #hasInvalidInput = () => {
-    return this.#inputList.some(inputElement => !inputElement.validity.valid);
-  }
+    return this.#inputList.some((inputElement) => !inputElement.validity.valid);
+  };
 
   //переключение состояний кнопки
   #toggleButtonState = () => {
@@ -52,22 +56,26 @@ class FormValidator {
     } else {
       this.#buttonElement.disabled = false;
     }
-  }
+  };
 
   //установка слушателей
   #setEventListeners = () => {
-    this.#currentForm.addEventListener('submit', (evt) => {
+    this.#currentForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
 
     // находим инпуты
-    this.#inputList = Array.from(this.#currentForm.querySelectorAll(this.#inputSelector));
+    this.#inputList = Array.from(
+      this.#currentForm.querySelectorAll(this.#inputSelector)
+    );
     // находим кнопки
-    this.#buttonElement = this.#currentForm.querySelector(this.#submitButtonSelector);
+    this.#buttonElement = this.#currentForm.querySelector(
+      this.#submitButtonSelector
+    );
     this.#toggleButtonState();
     // установить лисенеры на инпуты
-    this.#inputList.forEach(inputElement => {
-      inputElement.addEventListener('input', () => {
+    this.#inputList.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => {
         //проверить валидность
         this.#checkInputValidity(inputElement);
 
@@ -78,16 +86,15 @@ class FormValidator {
 
   //чистка формы от ошибок при валидации на предыдущем открытии попапа
   resetValidation = () => {
-    this.#inputList.forEach(inputElement => {
-      this.#hideInputError(inputElement)
+    this.#inputList.forEach((inputElement) => {
+      this.#hideInputError(inputElement);
     });
     this.#toggleButtonState();
-  }
+  };
 
   enableValidation = () => {
-
     this.#setEventListeners();
-  }
+  };
 }
 
-export default FormValidator
+export default FormValidator;

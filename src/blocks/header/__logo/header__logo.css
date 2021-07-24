@@ -6,7 +6,7 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.header__logo:hover{
+.header__logo:hover {
   opacity: 0.6;
   cursor: pointer;
 }

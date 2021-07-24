@@ -20,8 +20,6 @@
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__image-hover/profile__image-hover.css);
 @import url(../blocks/profile/__image-hover-symbol/profile__image-hover-symbol.css);
-@import url();
-
 
 @import url(../blocks/place-edit/place-edit.css);
 @import url(../blocks/place-edit/__symbol-add/place-edit__symbol-add.css);
@@ -71,5 +69,3 @@
 @import url(../blocks/popup/_type/popup_type_confirm-deletion.css);
 @import url(../blocks/popup/__container-confirm-deletion/popup__container-confirm-deletion.css);
 @import url(../blocks/popup/_type/popup_type_avatar.css);
-
-
